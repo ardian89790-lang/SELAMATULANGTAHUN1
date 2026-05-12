@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Sayang 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #fad0c4 100%);
+            min-height: 100vh;
+            padding: 30px 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 6px rgba(255, 0, 85, 0.3);
+        }
+
+        .sub-judul {
+            color: #fff0f3;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            letter-spacing: 1.5px;
+        }
+
+        .isi-pesan {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #ff4d6d;
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .tanda-tangan {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            text-align: right;
+            margin-top: 15px;
+            color: #ffdde1;
+        }
+
+        /* Tombol DIPERBAIKI agar bisa ditekan */
+        #tombolKejutan {
+            background: linear-gradient(45deg, #ff4d6d, #ff0054);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4);
+            position: relative;
+            z-index: 999 !important;
+            pointer-events: auto !important;
+            touch-action: manipulation;
+        }
+
+        #tombolKejutan:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 8px rgba(255, 0, 85, 0.3);
+        }
+
+        #pesanRahasia {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-style: italic;
+        }
+
+        .hati {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 22px;
+            animation: naik 6s linear infinite;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes naik {
+            0% {transform: translateY(100vh) scale(0.5); opacity:1;}
+            100% {transform: translateY(-50px) scale(1.2); opacity:0;}
+        }
+
+        .konfeti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            animation: jatuh 4s ease-in-out forwards;
+            opacity:0;
+            pointer-events: none;
+        }
+
+        @keyframes jatuh {
+            0% {transform: translateY(-10px) rotate(0deg); opacity:1;}
+            100% {transform: translateY(100vh) rotate(720deg); opacity:0;}
+        }
+    </style>
+</head>
+<body>
+    <div id="wadahHati"></div>
+    <div id="wadahKonfeti"></div>
+
+    <div class="card">
+        <h1>Selamat Ulang Tahun 🎂</h1>
+        <p class="sub-judul">Untuk Orang Terkasih</p>
+
+        <div class="isi-pesan">
+            <p>Sayangku,</p>
+            <br>
+            <p>Selamat bertambah usia ya cintaku. Terima kasih sudah hadir di dunia ini dan mewarnai setiap hariku dengan kebahagiaan yang luar biasa.</p>
+            <p>Semoga di usia yang baru ini, Tuhan selalu melimpahkan kesehatan, rezeki, dan segala kebaikan untukmu. Aku berjanji akan selalu ada menemani langkahmu, mendukung mimpimu, dan mencintaimu apa adanya.</p>
+            <p>Kamu adalah anugerah terindah yang pernah aku miliki. Tetaplah menjadi pribadi yang baik, ceria, dan penuh kasih sayang.</p>
+            <div class="tanda-tangan">Selamat Ulang Tahun Sayang 💖<br>Dari: [Tulis Nama Kamu]</div>
+        </div>
+
+        <button id="tombolKejutan">Ketuk untuk Lanjutkan 💝</button>
+
+        <div id="pesanRahasia">
+            "Cintaku padamu tidak mengenal batas waktu. Dari hari ini, esok, hingga selamanya, kamu tetap satu-satunya di hatiku. Terima kasih sudah bertahan dan berjuang bersamaku. Aku sayang kamu selamanya!"
+        </div>
+    </div>
+
+    <script>
+        // Efek Hati Terbang
+        function buatHati(){
+            const hati = document.createElement('div');
+            hati.className = 'hati';
+            hati.innerHTML = '❤';
+            hati.style.left = Math.random() * 100 + 'vw';
+            hati.style.fontSize = (Math.random() * 15 + 12) + 'px';
+            document.getElementById('wadahHati').appendChild(hati);
+            setTimeout(()=> hati.remove(), 6000);
+        }
+        setInterval(buatHati, 400);
+
+        // Efek Konfeti
+        function buatKonfeti(){
+            const warna = ['#ff4d6d','#ffffff','#ff758c','#ffd6e0'];
+            for(let i=0; i<60; i++){
+                const k = document.createElement('div');
+                k.className = 'konfeti';
+                k.style.left = Math.random()*100+'vw';
+                k.style.background = warna[Math.floor(Math.random()*warna.length)];
+                document.getElementById('wadahKonfeti').appendChild(k);
+                setTimeout(()=>k.remove(),4000);
+            }
+        }
+
+        // FUNGSI TOMBOL DIPERBAIKI
+        const tombol = document.getElementById('tombolKejutan');
+        const pesan = document.getElementById('pesanRahasia');
+
+        tombol.addEventListener('click', function(){
+            buatKonfeti();
+            pesan.style.display = 'block';
+            this.innerText = 'Terima Kasih Sudah Ada 💞';
+            this.disabled = true;
+            if(navigator.vibrate) navigator.vibrate(400);
+        });
+    </script>
+</body>
+</html>
